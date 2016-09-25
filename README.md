@@ -15,6 +15,7 @@ Antes de usarlo, necesitarás las siguientes dependencias:
 - Requests (`pip install requests`)
 - TermColor (`pip install termcolor`)
 - HTML5Lib (`pip install --upgrade html5lib==1.0b8`)
+
 # Uso
 El uso basico, para obtener información de una persona en particular:
 ```
