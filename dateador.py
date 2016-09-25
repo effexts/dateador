@@ -24,17 +24,17 @@ print colored("""
                    ╚═══╩╝╚╩═╩══╩╝╚╩══╩══╩╝
                       v1.0 by @unkndown
 ""","blue", attrs=['bold'])
-# opciones
-print colored(" Obten los datos de una persona con el rut o nombre de ella: \n\n -Ejemplo con rut: 5519653-2 \n -Ejemplo con nombre: Pedro Aguilar Toloza\n -Si tienes solo una parte del nombre, usa la opcion stalker\n", "magenta", attrs=['bold'])
+# Opciones
+print colored(" Obtén los datos de una persona con el rut o nombre de ella: \n\n -Ejemplo con rut: 5519653-2 \n -Ejemplo con nombre: Pedro Aguilar Toloza\n -Si tienes solo una parte del nombre, usa la opción stalker\n", "magenta", attrs=['bold'])
 
-# Iniciamos la ejecucion
+# Iniciamos la ejecución
 try:
 
     #
     # Obtenemos el rut a partir del dato que nos de el usuario
     #
 
-    nombre     = raw_input(" igresa un rut o nombre: ")
+    nombre     = raw_input(" Ingresa un rut o nombre: ")
     print colored(" \n [+] Buscando datos \n","green",attrs =['bold'])
     link       = "http://chile.rutificador.com/get_generic_ajax/"
     host       = "chile.rutificador.com:80"
@@ -55,11 +55,11 @@ try:
                 print colored("+------------------------------------------+","green", attrs=['bold'])
                 # contamos los registros encontrados 
                 total = len(data['value'])
-                # abrimos el archivo datos.txt o lo creamos si no existe para guardar el resultado de la busqueda
+                # abrimos el archivo datos.txt o lo creamos si no existe para guardar el resultado de la búsqueda
                 txt = open('datos.txt', 'a')
                 datos = ""
                 datos += "+------------------------------------------+\n"
-                # mostramos la fecha de la busqueda
+                # mostramos la fecha de la búsqueda
                 datos += "         " + hora + "\n"
                 datos += "+------------------------------------------+\n"
                 # mostramos los datos encontrados
@@ -74,7 +74,7 @@ try:
                 txt.close()
                 exit()
             else:
-                # si la opcion es diferente de stalker, mostramos un error
+                # si la opción es diferente de stalker, mostramos un error
                 print colored("\n\n  Usa un comando valido \n","red", attrs=['bold'])
                 exit()
 
@@ -84,7 +84,7 @@ try:
         print " Rut usuario: " + rut
 
         # 
-        # Obtenemos la informacion a partir del rut obtenido
+        # Obtenemos la información a partir del rut obtenido
         # 
 
         url     = "http://buscardatos.com/cl/personas/padron_cedula_chile.php"
@@ -127,6 +127,6 @@ try:
         # si no se ha encontrado al menos una persona mostramos un mensaje de error
         print colored(" [-] No se ha encontrado informacion\n","red",attrs=['bold'])
 
-# Si cancela la ejecucion, mostramos un mensaje de despedida
+# Si cancela la ejecución, mostramos un mensaje de despedida
 except KeyboardInterrupt:
     print colored("\n\n Ejecucion cancelada, hasta la proxima\n","red",attrs=['bold'])
