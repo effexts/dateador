@@ -33,52 +33,17 @@ try:
     #
     # Obtenemos el rut a partir del dato que nos de el usuario
     #
-
     nombre     = raw_input(" Ingresa un rut o nombre: ")
     print colored(" \n [+] Buscando datos \n","green",attrs =['bold'])
-    link       = "https://chile.rutificador.com/get_generic_ajax/"
-    host       = "chile.rutificador.com:80"
-    headers    = {'Origin': 'https://chile.rutificador.com','Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'es-ES,es;q=0.8', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8', 'Accept': '*/*', 'Referer': 'https://chile.rutificador.com/', 'X-Requested-With': 'XMLHttpRequest', 'Connection': 'keep-alive', }
-    cookies    = {'_gat': '1', 'csrftoken': 'W9s4ydeFOSbl37Gp3iYnOMDBIGbYz7AW', '_ga': 'GA1.2.62259178.1488421266', }
-    parametros = {'csrfmiddlewaretoken': 'W9s4ydeFOSbl37Gp3iYnOMDBIGbYz7AW', 'entrada': nombre }
-    respuesta  = requests.post('https://chile.rutificador.com/get_generic_ajax/', headers=headers, cookies=cookies, data=parametros)
-    ver_source = respuesta.text
-    data       = json.loads(ver_source)
+    link     = "https://api.hacking.cl/inicio/?modulo=servel&apikey=yETwe0K3wXb7a4f7b1&dato=%s" % nombre
+    peticion = requests.get(link)
+    data     = json.loads(peticion.content)
 
     # verificamos si se ha encontrado un dato 
-    if data['status'] != "not_found":
-        # verificamos si se ha pasado un parametro
-        if len(sys.argv) >= 2:
-            # verificamos si el parametro es stalker
-            if sys.argv[1] == "stalker":
-                print colored("+------------------------------------------+","green", attrs=['bold'])
-                # contamos los registros encontrados 
-                total = len(data['value'])
-                # abrimos el archivo datos.txt o lo creamos si no existe para guardar el resultado de la búsqueda
-                txt = open('datos.txt', 'a')
-                datos = ""
-                datos += "+------------------------------------------+\n"
-                # mostramos la fecha de la búsqueda
-                datos += "         " + hora + "\n"
-                datos += "+------------------------------------------+\n"
-                # mostramos los datos encontrados
-                for i in range(1, total):
-                    nombre = data['value'][i]['name']
-                    rut    = str(data['value'][i]['rut']) + "-" + str(data['value'][i]['dv'])
-                    datos  += u' - '.join((nombre,rut)).encode('utf-8').strip() + "\n"
-                    print colored(" Nombre: ","blue", attrs=['bold']) + nombre + "\n" + colored(" Rut: ","blue", attrs=['bold']) + rut
-                    print colored("+------------------------------------------+","green", attrs=['bold'])
-                # guardamos los datos en el archivo txt
-                txt.write(datos)
-                txt.close()
-                exit()
-            else:
-                # si la opción es diferente de stalker, mostramos un error
-                print colored("\n\n  Usa un comando valido \n","red", attrs=['bold'])
-                exit()
+    if data[0]['id_persona'] != 0:
 
         # definimos el rut
-        rut = str(data['value'][0]['rut']) + str(data['value'][0]['dv'])
+        rut = str(data[0]['run_persona']) + str(data[0]['dv_persona'])
         print colored("+------------------------------------------+","green", attrs=['bold'])
         print " Rut usuario: " + rut
 
@@ -88,6 +53,7 @@ try:
         url     = "http://buscardatos.com/cl/personas/padron_cedula_chile.php"
         hosts   = "buscardatos.com:80"
         post    = urllib.urlencode({'cedula': rut})
+        headers    = {'Origin': 'https://chile.rutificador.com','Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'es-ES,es;q=0.8', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36', 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8', 'Accept': '*/*', 'Referer': 'https://chile.rutificador.com/', 'X-Requested-With': 'XMLHttpRequest', 'Connection': 'keep-alive', }
         conex   = httplib.HTTPConnection(hosts)
         conex.request("POST", url, post, headers)
         request = conex.getresponse()
