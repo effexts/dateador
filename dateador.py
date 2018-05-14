@@ -35,7 +35,7 @@ try:
     #
     nombre     = raw_input(" Ingresa un rut o nombre: ")
     print colored(" \n [+] Buscando datos \n","green",attrs =['bold'])
-    link     = "https://api.hacking.cl/inicio/?modulo=servel&apikey=yETwe0K3wXb7a4f7b1&dato=%s" % nombre
+    link     = "https://aplix.hacking.cl/inicio/?modulo=servel&apikey=yETwe0K3wXb7a4f7b1&dato=%s" % nombre
     peticion = requests.get(link)
     data     = json.loads(peticion.content)
 
