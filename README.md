@@ -1,23 +1,29 @@
 # Dateador
-Script que se conecta a dos sitios diferentes para obtener informacion de personas chilenas. Guarda un log con los resultados.
-
+Script que se conecta a dos sitios diferentes para obtener información de personas chilenas.
+<pre>
+╔═══╗  ╔╗        ╔╗
+╚╗╔╗║ ╔╝╚╗       ║║
+ ║║║╠═╩╗╔╬══╦══╦═╝╠══╦═╗
+ ║║║║╔╗║║║║═╣╔╗║╔╗║╔╗║╔╝
+╔╝╚╝║╔╗║╚╣║═╣╔╗║╚╝║╚╝║║
+╚═══╩╝╚╩═╩══╩╝╚╩══╩══╩╝
+</pre>
 # Requisitos
-Antes de usarlo debes instalar lo siguiente:
-```
-	sudo apt-get install python-pip
-	sudo pip install termcolor
-	sudo pip install BeautifulSoup
-	sudo pip install requests
-```
+Antes de usarlo, necesitarás las siguientes dependencias:
+- Python 2.7
+- BeautifulSoup (`pip install beautifulsoup`)
+- Requests (`pip install requests`)
+- TermColor (`pip install termcolor`)
+- HTML5Lib (`pip install --upgrade html5lib==1.0b8`)
 
 # Uso
-El uso basico, para obtener informacion de una persona en particular:
+El uso basico, para obtener información de una persona en particular:
 ```
-	python dateador.py
+    python dateador.py
 ```
 
 Para buscar una lista de nombre a partir de uno solo
 
 ```
-	python dateador.py stalker
+    python dateador.py stalker
 ```
